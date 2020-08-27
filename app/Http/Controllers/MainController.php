@@ -32,13 +32,14 @@ class MainController extends Controller
 
 
 
-    public function contact_insert(Request $request){
+   public function contact_insert(Request $request){
 
-        $request->validate([
+        $data = $request->validate([
             'contact_name' => 'required',
             'contact_number' => 'required',
         ]);
-        $data = $this->contacts->create(['contact_name' => $request->contact_name, 'contact_number' => $request->contact_number]);
+   
+        $data = $this->contacts->create($data);
         return redirect()->route('Home_page');
 
     }
